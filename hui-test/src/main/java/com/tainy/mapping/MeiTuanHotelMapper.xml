@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tainy.mapper.MeiTuanHotelMapper" >
+  <resultMap id="BaseResultMap" type="com.tainy.entity.MeiTuanHotel" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="information" property="infomation" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="policy" property="policy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, city, name, address, score, phone, information, introduce, policy, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hui_meituan_food
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hui_meituan_food
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tainy.entity.MeiTuanHotel" >
+    insert into hui_meituan_food (ID, city, name, 
+      address, score, phone,
+      information, introduce,
+      policy, create_time)
+    values (#{id,jdbcType=BIGINT}, #{city,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{information,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{policy,jdbcType=VARCHAR},
+      #{createTime,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tainy.entity.MeiTuanHotel" >
+    insert into hui_meituan_food
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="information != null" >
+        information,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="policy != null" >
+        policy,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="information != null" >
+        #{information,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="policy != null" >
+        #{policy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tainy.entity.MeiTuanHotel" >
+    update hui_meituan_food
+    <set >
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="information != null" >
+        information = #{information,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="policy != null" >
+        policy = #{policy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tainy.entity.MeiTuanHotel" >
+    update hui_meituan_food
+    set city = #{city,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      information = #{information,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      policy = #{policy,jdbcType=VARCHAR},
+      createTime = #{createTime,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

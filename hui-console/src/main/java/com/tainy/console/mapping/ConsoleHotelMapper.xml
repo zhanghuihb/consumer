@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tainy.console.mapper.ConsoleHotelMapper" >
+  <resultMap id="BaseResultMap" type="com.tainy.common.domain.console.ConsoleHotel" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="information" property="information" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="policy" property="policy" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, city, name, address, score, phone, information, introduce, policy, create_user, 
+    create_time, update_user, update_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from console_hotel
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from console_hotel
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.tainy.common.domain.console.ConsoleHotel" useGeneratedKeys="true" keyProperty="id" keyColumn="ID" >
+    insert into console_hotel (ID, city, name, 
+      address, score, phone, 
+      information, introduce, policy, 
+      create_user, create_time, update_user, 
+      update_time, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{city,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{information,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{policy,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tainy.common.domain.console.ConsoleHotel" useGeneratedKeys="true" keyProperty="id" keyColumn="ID" >
+    insert into console_hotel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="information != null" >
+        information,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="policy != null" >
+        policy,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="information != null" >
+        #{information,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="policy != null" >
+        #{policy,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tainy.common.domain.console.ConsoleHotel" >
+    update console_hotel
+    <set >
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="information != null" >
+        information = #{information,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="policy != null" >
+        policy = #{policy,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tainy.common.domain.console.ConsoleHotel" >
+    update console_hotel
+    set city = #{city,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      information = #{information,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      policy = #{policy,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryByObject" parameterType="com.tainy.common.domain.console.ConsoleHotel" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+     FROM console_hotel
+    <where>
+      <if test="record.id != null" >
+        AND ID = #{record.id,jdbcType=INTEGER}
+      </if>
+      <if test="record.city != null" >
+        AND city like concat('%',#{record.city,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="record.name != null" >
+        AND name like concat('%',#{record.name,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="record.address != null" >
+        AND address like concat('%',#{record.address,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="record.score != null" >
+        AND score = #{record.score,jdbcType=VARCHAR}
+      </if>
+      <if test="record.phone != null" >
+        AND phone = #{record.phone,jdbcType=VARCHAR}
+      </if>
+      <if test="record.information != null" >
+        AND information = #{record.information,jdbcType=VARCHAR}
+      </if>
+      <if test="record.introduce != null" >
+        AND introduce = #{record.introduce,jdbcType=VARCHAR}
+      </if>
+      <if test="record.policy != null" >
+        AND policy = #{record.policy,jdbcType=VARCHAR}
+      </if>
+      <if test="record.createUser != null" >
+        AND create_user = #{record.createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="record.createTime != null" >
+        AND create_time = #{record.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="record.updateUser != null" >
+        AND update_user = #{record.updateUser,jdbcType=VARCHAR}
+      </if>
+      <if test="record.updateTime != null" >
+        AND update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="record.delFlag != null" >
+        AND del_flag = #{record.delFlag,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectListPageGetHotels" parameterType="com.tainy.common.domain.console.ConsoleHotel" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM console_hotel
+    <where>
+      <if test="hotel.id != null" >
+        AND ID = #{hotel.id,jdbcType=INTEGER}
+      </if>
+      <if test="hotel.city != null" >
+        AND city like concat(#{hotel.city,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="hotel.name != null" >
+        AND name like concat(#{hotel.name,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="hotel.address != null" >
+        AND address like concat(#{hotel.address,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="hotel.score != null" >
+        AND score = #{hotel.score,jdbcType=VARCHAR}
+      </if>
+      <if test="hotel.phone != null" >
+        AND phone = #{hotel.phone,jdbcType=VARCHAR}
+      </if>
+      <if test="hotel.information != null" >
+        AND information = #{hotel.information,jdbcType=VARCHAR}
+      </if>
+      <if test="hotel.introduce != null" >
+        AND introduce = #{hotel.introduce,jdbcType=VARCHAR}
+      </if>
+      <if test="hotel.policy != null" >
+        AND policy = #{hotel.policy,jdbcType=VARCHAR}
+      </if>
+      <if test="hotel.createUser != null" >
+        AND create_user = #{hotel.createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="hotel.createTime != null" >
+        AND create_time = #{hotel.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="hotel.updateUser != null" >
+        AND update_user = #{hotel.updateUser,jdbcType=VARCHAR}
+      </if>
+      <if test="hotel.updateTime != null" >
+        AND update_time = #{hotel.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="hotel.delFlag != null" >
+        AND del_flag = #{hotel.delFlag,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <resultMap id="StatisticsAccordingAreaResultMap" type="com.tainy.console.vo.console.vo.StatisticsAccordingAreaVO" >
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="BIGINT" />
+  </resultMap>
+  <select id="statisticsAccordingArea" resultMap="StatisticsAccordingAreaResultMap">
+    select city as name,
+           count(*) as value
+      from console_hotel
+     where city != '美团酒店'
+  GROUP BY city
+  </select>
+  <resultMap id="StatisticsAccordingScoreResultMap" type="com.tainy.console.vo.console.vo.StatisticsAccordingScoreVO" >
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="BIGINT" />
+  </resultMap>
+  <select id="statisticsAccordingScore" resultMap="StatisticsAccordingScoreResultMap">
+    select '4.6~5.0' as name,
+           sum(num) as value
+      from score_view
+     where score BETWEEN 4.6 and 5
+     UNION
+    select '4.1~4.5' as name,
+           sum(num) as value
+      from score_view
+     where score BETWEEN 4.1 and 4.5
+     UNION
+    select '3.6~4.0' as name,
+           sum(num) as value
+      from score_view
+     where score BETWEEN 3.6 and 4.0
+     UNION
+    select '3.1~3.5' as name,
+           sum(num) as value
+      from score_view
+     where score BETWEEN 3.1 and 3.5
+     UNION
+    select '2.1~3.0' as name,
+           sum(num) as value
+      from score_view
+     where score BETWEEN 2.1 and 3.0
+     UNION
+    select '1.1~2.0' as name,
+           sum(num) as value
+      from score_view
+     where score BETWEEN 1.1 and 2.0
+     UNION
+    select '1.0及以下' as name,
+           sum(num) as value
+      from score_view
+     where score &lt;= 1.0
+  </select>
+</mapper>

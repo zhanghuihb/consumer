@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tainy.mapper.EmployeeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tainy.entity.EmployeeInfo" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="DEPT_ID" property="deptId" jdbcType="DECIMAL" />
+    <result column="JOB_ID" property="jobId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CARD_ID" property="cardId" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="QQ_NUM" property="qqNum" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="DECIMAL" />
+    <result column="PARTY" property="party" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="RACE" property="race" jdbcType="VARCHAR" />
+    <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+    <result column="SPECIALITY" property="speciality" jdbcType="VARCHAR" />
+    <result column="HOBBY" property="hobby" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="DECIMAL" />
+    <association property="deptInfo" javaType="com.tainy.entity.DeptInfo">
+      <id column="DID" property="id" jdbcType="DECIMAL" />
+      <result column="DNAME" property="name" jdbcType="VARCHAR" />
+      <result column="DREMARK" property="remark" jdbcType="VARCHAR" />
+    </association>
+    <association property="jobInfo" javaType="com.tainy.entity.JobInfo">
+      <id column="JID" property="id" jdbcType="DECIMAL" />
+      <result column="JNAME" property="name" jdbcType="VARCHAR" />
+      <result column="JREMARK" property="remark" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    E.ID, E.DEPT_ID, E.JOB_ID, E.NAME, E.CARD_ID, E.ADDRESS, E.POST_CODE, E.TEL, E.QQ_NUM, E.EMAIL,
+    E.SEX, E.PARTY, E.BIRTHDAY, E.RACE, E.EDUCATION, E.SPECIALITY, E.HOBBY, E.REMARK, E.CREATE_TIME, E.DEL_FLAG,
+    D.ID AS DID, D.NAME AS DNAME, D.REMARK AS DREMARK,
+    J.ID AS JID, J.NAME AS JNAME, J.REMARK AS JREMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select <include refid="Base_Column_List" />
+      from NIMA_EMPLOYEE_INFO E
+ LEFT JOIN NIMA_DEPT_INFO D
+        ON E.DEPT_ID = D.ID
+ LEFT JOIN NIMA_JOB_INFO J
+        ON E.JOB_ID = J.ID
+     where E.ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from NIMA_EMPLOYEE_INFO
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.tainy.entity.EmployeeInfo" >
+    insert into NIMA_EMPLOYEE_INFO (ID, DEPT_ID, JOB_ID,
+      NAME, CARD_ID, ADDRESS, 
+      POST_CODE, TEL,
+      QQ_NUM, EMAIL, SEX, 
+      PARTY, BIRTHDAY, RACE, 
+      EDUCATION, SPECIALITY, HOBBY, 
+      REMARK, CREATE_TIME, DEL_FLAG)
+    values (#{id,jdbcType=DECIMAL}, #{deptId,jdbcType=DECIMAL}, #{jobId,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR},
+      #{qqNum,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{sex,jdbcType=DECIMAL}, 
+      #{party,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{race,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{speciality,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tainy.entity.EmployeeInfo" >
+    insert into NIMA_EMPLOYEE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID,
+      </if>
+      <if test="jobId != null" >
+        JOB_ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="cardId != null" >
+        CARD_ID,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="postCode != null" >
+        POST_CODE,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="qqNum != null" >
+        QQ_NUM,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="party != null" >
+        PARTY,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="race != null" >
+        RACE,
+      </if>
+      <if test="education != null" >
+        EDUCATION,
+      </if>
+      <if test="speciality != null" >
+        SPECIALITY,
+      </if>
+      <if test="hobby != null" >
+        HOBBY,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=DECIMAL},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="qqNum != null" >
+        #{qqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="party != null" >
+        #{party,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="race != null" >
+        #{race,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="speciality != null" >
+        #{speciality,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null" >
+        #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tainy.entity.EmployeeInfo" >
+    update NIMA_EMPLOYEE_INFO
+    <set >
+      <if test="deptId != null" >
+        DEPT_ID = #{deptId,jdbcType=DECIMAL},
+      </if>
+      <if test="jobId != null" >
+        JOB_ID = #{jobId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        CARD_ID = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        POST_CODE = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="qqNum != null" >
+        QQ_NUM = #{qqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="party != null" >
+        PARTY = #{party,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="race != null" >
+        RACE = #{race,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        EDUCATION = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="speciality != null" >
+        SPECIALITY = #{speciality,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null" >
+        HOBBY = #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tainy.entity.EmployeeInfo" >
+    update NIMA_EMPLOYEE_INFO
+    set DEPT_ID = #{deptId,jdbcType=DECIMAL},
+      JOB_ID = #{jobId,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      CARD_ID = #{cardId,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      POST_CODE = #{postCode,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      QQ_NUM = #{qqNum,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=DECIMAL},
+      PARTY = #{party,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      RACE = #{race,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      SPECIALITY = #{speciality,jdbcType=VARCHAR},
+      HOBBY = #{hobby,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <!-- 获得所有员工 -->
+  <select id="selectByPageListAllEmployeeInfo" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+      FROM NIMA_EMPLOYEE_INFO E
+ LEFT JOIN NIMA_DEPT_INFO D
+        ON E.DEPT_ID = D.ID
+ LEFT JOIN NIMA_JOB_INFO J
+        ON E.JOB_ID = J.ID
+     WHERE 1 = 1
+       AND E.DEL_FLAG = 0
+       <if test="employeeInfo.jobId != null" >
+       AND E.JOB_ID = #{employeeInfo.jobId,jdbcType=DECIMAL}
+     </if>
+       <if test="employeeInfo.name != null and employeeInfo.name != ''" >
+       AND E.NAME LIKE concat(concat('%',#{employeeInfo.name,jdbcType=VARCHAR}),'%')
+     </if>
+       <if test="employeeInfo.cardId != null" >
+       AND E.CARD_ID LIKE concat(concat('%',#{employeeInfo.cardId,jdbcType=VARCHAR}),'%')
+     </if>
+       <if test="employeeInfo.sex != null" >
+       AND E.SEX = #{employeeInfo.sex,jdbcType=DECIMAL}
+     </if>
+       <if test="employeeInfo.tel != null" >
+       AND E.TEL LIKE concat(concat('%',#{employeeInfo.tel,jdbcType=VARCHAR}),'%')
+     </if>
+       <if test="employeeInfo.deptId != null" >
+       AND E.DEPT_ID = #{employeeInfo.deptId,jdbcType=DECIMAL}
+    </if>
+    ORDER BY E.ID DESC
+  </select>
+  <!-- 获取 员工 -->
+  <select id="listEmployeeInfoByObject" parameterType="com.tainy.entity.EmployeeInfo" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+      FROM NIMA_EMPLOYEE_INFO E
+ LEFT JOIN NIMA_DEPT_INFO D
+        ON E.DEPT_ID = D.ID
+ LEFT JOIN NIMA_JOB_INFO J
+        ON E.JOB_ID = J.ID
+   <where>
+       <if test="deptId != null" >
+       AND E.DEPT_ID = #{deptId,jdbcType=DECIMAL}
+     </if>
+       <if test="jobId != null" >
+       AND E.JOB_ID = #{jobId,jdbcType=DECIMAL}
+     </if>
+       <if test="name != null" >
+       AND E.NAME = #{name,jdbcType=VARCHAR}
+     </if>
+       <if test="cardId != null" >
+       AND E.CARD_ID = #{cardId,jdbcType=VARCHAR}
+     </if>
+       <if test="address != null" >
+       AND E.ADDRESS = #{address,jdbcType=VARCHAR}
+     </if>
+       <if test="postCode != null" >
+       AND E.POST_CODE = #{postCode,jdbcType=VARCHAR}
+     </if>
+       <if test="tel != null" >
+       AND E.TEL = #{tel,jdbcType=VARCHAR}
+     </if>
+       <if test="qqNum != null" >
+       AND E.QQ_NUM = #{qqNum,jdbcType=VARCHAR}
+     </if>
+       <if test="email != null" >
+       AND E.EMAIL = #{email,jdbcType=VARCHAR}
+     </if>
+       <if test="sex != null" >
+       AND E.SEX = #{sex,jdbcType=DECIMAL}
+     </if>
+       <if test="party != null" >
+       AND E.PARTY = #{party,jdbcType=VARCHAR}
+     </if>
+       <if test="birthday != null" >
+       AND E.BIRTHDAY = #{birthday,jdbcType=TIMESTAMP}
+     </if>
+       <if test="race != null" >
+       AND E.RACE = #{race,jdbcType=VARCHAR}
+     </if>
+       <if test="education != null" >
+       AND E.EDUCATION = #{education,jdbcType=VARCHAR}
+     </if>
+       <if test="speciality != null" >
+       AND E.SPECIALITY = #{speciality,jdbcType=VARCHAR}
+     </if>
+       <if test="hobby != null" >
+       AND E.HOBBY = #{hobby,jdbcType=VARCHAR}
+     </if>
+       <if test="remark != null" >
+       AND E.REMARK = #{remark,jdbcType=VARCHAR}
+     </if>
+       <if test="createTime != null" >
+       AND E.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+       <if test="delFlag != null" >
+       AND E.DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+     </if>
+    </where>
+  </select>
+</mapper>

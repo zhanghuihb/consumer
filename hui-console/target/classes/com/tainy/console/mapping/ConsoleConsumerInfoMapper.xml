@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tainy.console.mapper.ConsoleConsumerInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.tainy.common.domain.console.ConsoleConsumerInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="code_name" property="codeName" jdbcType="VARCHAR" />
+    <result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="parent_code_name" property="parentCodeName" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="digest" property="digest" jdbcType="INTEGER" />
+    <result column="consumer" property="consumer" jdbcType="VARCHAR" />
+    <result column="consumer_time" property="consumerTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, province, city, code, code_name, parent_code, parent_code_name, amount, digest, consumer,
+    consumer_time, description, status, create_user, create_time, update_user, update_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from console_consumer_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from console_consumer_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    insert into console_consumer_info (id, user_id, province, 
+      city, code, code_name, parent_code, parent_code_name,
+      amount, digest, consumer,
+      consumer_time, description, status, create_user,
+      create_time, update_user, update_time, del_flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{codeName,jdbcType=VARCHAR},
+      #{parentCode,jdbcType=VARCHAR}, #{parentCodeName,jdbcType=VARCHAR},
+      #{amount,jdbcType=INTEGER}, #{digest,jdbcType=INTEGER}, #{consumer,jdbcType=VARCHAR}, 
+      #{consumerTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    insert into console_consumer_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="codeName != null" >
+        code_name,
+      </if>
+      <if test="parentCode != null" >
+        parent_code,
+      </if>
+      <if test="parentCodeName != null" >
+        parent_code_name,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="digest != null" >
+        digest,
+      </if>
+      <if test="consumer != null" >
+        consumer,
+      </if>
+      <if test="consumerTime != null" >
+        consumer_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="codeName != null" >
+        #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCodeName != null" >
+        #{parentCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="digest != null" >
+        #{digest,jdbcType=INTEGER},
+      </if>
+      <if test="consumer != null" >
+        #{consumer,jdbcType=VARCHAR},
+      </if>
+      <if test="consumerTime != null" >
+        #{consumerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" >
+    update console_consumer_info
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="codeName != null" >
+        code_name = #{codeName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCodeName != null" >
+        parent_code_name = #{parentCodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="digest != null" >
+        digest = #{digest,jdbcType=INTEGER},
+      </if>
+      <if test="consumer != null" >
+        consumer = #{consumer,jdbcType=VARCHAR},
+      </if>
+      <if test="consumerTime != null" >
+        consumer_time = #{consumerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" >
+    update console_consumer_info
+    set user_id = #{userId,jdbcType=INTEGER},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      code_name = #{record.codeName,jdbcType=VARCHAR},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      parent_code_name = #{record.parentCodeName,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      digest = #{digest,jdbcType=INTEGER},
+      consumer = #{consumer,jdbcType=VARCHAR},
+      consumer_time = #{consumerTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryByObject" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+      from console_consumer_info
+   <where>
+       <if test="record.id != null" >
+       and id = #{record.id,jdbcType=INTEGER}
+     </if>
+       <if test="record.userId != null" >
+       and user_id = #{record.userId,jdbcType=INTEGER}
+     </if>
+       <if test="record.province != null" >
+       and province = #{record.province,jdbcType=VARCHAR}
+     </if>
+       <if test="record.city != null" >
+       and city = #{record.city,jdbcType=VARCHAR}
+     </if>
+       <if test="record.code != null" >
+       and code = #{record.code,jdbcType=VARCHAR}
+      </if>
+     <if test="record.codeName != null" >
+       and code_name = #{record.codeName,jdbcType=VARCHAR}
+     </if>
+       <if test="record.parentCode != null" >
+       and parent_code = #{record.parentCode,jdbcType=VARCHAR}
+     </if>
+     <if test="record.parentCodeName != null" >
+       and parent_code_name = #{record.parentCodeName,jdbcType=VARCHAR}
+     </if>
+       <if test="record.amount != null" >
+       and amount = #{record.amount,jdbcType=INTEGER}
+     </if>
+       <if test="record.digest != null" >
+       and digest = #{record.digest,jdbcType=INTEGER}
+     </if>
+       <if test="record.consumer != null" >
+       and consumer = #{record.consumer,jdbcType=VARCHAR}
+     </if>
+       <if test="record.consumerTime != null" >
+       and consumer_time = #{record.consumerTime,jdbcType=TIMESTAMP}
+     </if>
+       <if test="record.description != null" >
+       and description = #{record.description,jdbcType=VARCHAR}
+     </if>
+       <if test="record.status != null" >
+       and status = #{record.status,jdbcType=VARCHAR}
+     </if>
+       <if test="record.createUser != null" >
+       and create_user = #{record.createUser,jdbcType=VARCHAR}
+     </if>
+       <if test="record.createTime != null" >
+       and create_time = #{record.createTime,jdbcType=TIMESTAMP}
+     </if>
+       <if test="record.updateUser != null" >
+       and update_user = #{record.updateUser,jdbcType=VARCHAR}
+     </if>
+       <if test="record.updateTime != null" >
+       and update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+     </if>
+       <if test="record.delFlag != null" >
+       and del_flag = #{record.delFlag,jdbcType=INTEGER}
+     </if>
+   </where>
+  </select>
+
+  <select id="selectListPageGetConsumerInfos" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+      from console_consumer_info
+   <where>
+       <if test="info.id != null" >
+       and id = #{info.id,jdbcType=INTEGER}
+     </if>
+       <if test="info.userId != null" >
+       and user_id = #{info.userId,jdbcType=INTEGER}
+     </if>
+       <if test="info.province != null" >
+       and province = #{info.province,jdbcType=VARCHAR}
+     </if>
+       <if test="info.city != null" >
+       and city = #{info.city,jdbcType=VARCHAR}
+     </if>
+       <if test="info.code != null" >
+       and code = #{info.code,jdbcType=VARCHAR}
+     </if>
+     <if test="info.codeName != null" >
+       and code_name = #{info.codeName,jdbcType=VARCHAR}
+     </if>
+       <if test="info.parentCode != null" >
+       and parent_code = #{info.parentCode,jdbcType=VARCHAR}
+     </if>
+     <if test="info.parentCodeName != null" >
+       and parent_code_name = #{info.parentCodeName,jdbcType=VARCHAR}
+     </if>
+       <if test="info.amount != null" >
+       and amount = #{info.amount,jdbcType=INTEGER}
+     </if>
+       <if test="info.digest != null" >
+       and digest = #{info.digest,jdbcType=INTEGER}
+     </if>
+       <if test="info.consumer != null" >
+       and consumer = #{info.consumer,jdbcType=VARCHAR}
+     </if>
+       <if test="info.consumerTime != null" >
+       and consumer_time = #{info.consumerTime,jdbcType=TIMESTAMP}
+     </if>
+       <if test="info.description != null" >
+       and description = #{info.description,jdbcType=VARCHAR}
+     </if>
+       <if test="info.status != null" >
+       and status = #{info.status,jdbcType=VARCHAR}
+     </if>
+       <if test="info.createUser != null" >
+       and create_user = #{info.createUser,jdbcType=VARCHAR}
+     </if>
+       <if test="info.createTime != null" >
+       and create_time = #{info.createTime,jdbcType=TIMESTAMP}
+     </if>
+       <if test="info.updateUser != null" >
+       and update_user = #{info.updateUser,jdbcType=VARCHAR}
+     </if>
+       <if test="info.updateTime != null" >
+       and update_time = #{info.updateTime,jdbcType=TIMESTAMP}
+     </if>
+       <if test="info.delFlag != null" >
+       and del_flag = #{info.delFlag,jdbcType=INTEGER}
+     </if>
+  </where>
+  order by create_time DESC
+  </select>
+
+  <resultMap id="StatisticsConsumerDataResultMap" type="com.tainy.console.vo.console.dto.StatisticsConsumerDataDTO" >
+    <result column="digest" property="digest" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="codeName" property="codeName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="statisticsConsumerDataByCategory" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" resultMap="StatisticsConsumerDataResultMap">
+    SELECT parent_code_name as codeName,
+	       sum(amount) as amount,
+           count(*) as sheets
+	  FROM console_consumer_info
+     WHERE user_id = #{info.userId,jdbcType=INTEGER}
+       and del_flag = 1
+       and digest = 2
+  GROUP BY parent_code
+  </select>
+
+  <select id="statisticsConsumerDataByCity" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" resultMap="StatisticsConsumerDataResultMap">
+    SELECT city as city,
+            sum(amount) as amount,
+           count(*) as sheets
+      FROM console_consumer_info
+     WHERE user_id = #{info.userId,jdbcType=INTEGER}
+       and del_flag = 1
+       and digest = 2
+  GROUP BY city
+  </select>
+
+  <select id="statisticsConsumerData" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" resultMap="StatisticsConsumerDataResultMap">
+    SELECT digest,
+           sum(amount) as amount,
+           count(*) as sheets
+      FROM console_consumer_info
+     WHERE user_id = #{info.userId,jdbcType=INTEGER}
+       and del_flag = 1
+       and (status = 1 or status = 2)
+  GROUP BY digest
+  order by digest
+  </select>
+
+  <select id="statisticsConsumerDataByMonth" parameterType="com.tainy.common.domain.console.ConsoleConsumerInfo" resultMap="StatisticsConsumerDataResultMap">
+    select date_format(consumer_time, '%Y-%m') as codeName,
+           sum(amount) as amount,
+           count(*) as sheets
+      from console_consumer_info
+     where user_id = #{info.userId,jdbcType=INTEGER}
+       and del_flag = 1
+       and digest = 2
+  group by date_format(consumer_time, '%Y-%m')
+  order by consumer_time desc
+     limit 12
+  </select>
+
+  <select id="statisticsConsumerDataByDay" parameterType="com.tainy.console.vo.console.dto.QueryByTimeDTO" resultMap="StatisticsConsumerDataResultMap">
+    select date_format(consumer_time, '%Y-%m-%d') as codeName,
+           sum(amount) as amount,
+           count(*) as sheets
+      from console_consumer_info
+     where user_id = #{userId,jdbcType=INTEGER}
+       and del_flag = 1
+       and digest = 2
+       and consumer_time &gt;= #{queryByTimeDTO.startTime,jdbcType=TIMESTAMP}
+       and consumer_time &lt;= #{queryByTimeDTO.endTime,jdbcType=TIMESTAMP}
+  group by date_format(consumer_time, '%Y-%m-%d')
+  order by consumer_time desc
+     limit 15
+  </select>
+
+  <select id="statisticsConsumerDataByPerson" parameterType="com.tainy.console.vo.console.dto.QueryByTimeDTO" resultMap="StatisticsConsumerDataResultMap">
+    select consumer as codeName,
+           sum(amount) as amount,
+           count(*) as sheets
+      from console_consumer_info
+     where user_id = #{userId,jdbcType=INTEGER}
+       and del_flag = 1
+       and digest = 2
+       <if test="queryByTimeDTO.startTime != null and queryByTimeDTO.endTime != null">
+       and consumer_time &gt;= #{queryByTimeDTO.startTime,jdbcType=TIMESTAMP}
+       and consumer_time &lt;= #{queryByTimeDTO.endTime,jdbcType=TIMESTAMP}
+       </if>
+  group by consumer
+  order by consumer_time desc
+  </select>
+
+</mapper>

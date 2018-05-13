@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../hui-common/hui-common.iml" filepath="$PROJECT_DIR$/../hui-common/hui-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hui-parentpom.iml" filepath="$PROJECT_DIR$/hui-parentpom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hui-project/hui-project.iml" filepath="$PROJECT_DIR$/../hui-project/hui-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hui-upms/hui-upms.iml" filepath="$PROJECT_DIR$/../hui-upms/hui-upms.iml" />
+    </modules>
+  </component>
+</project>

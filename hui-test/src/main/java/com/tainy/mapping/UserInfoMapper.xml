@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tainy.mapper.ConsoleUserMapper" >
+  <resultMap id="BaseResultMap" type="com.tainy.entity.UserInfo" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="USERNAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+    <result column="ROLE_IDS" property="role_ids" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_ID" property="organizationId" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="DEL_FLAG" property="delFlag" jdbcType="DECIMAL" />
+    <result column="ORGANIZATION_NAME" property="organizationName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USERNAME, PASSWORD, SALT, ROLE_IDS, ORGANIZATION_ID, STATUS, CREATE_TIME, DEL_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from NIMA_USER_INFO
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from NIMA_USER_INFO
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.tainy.entity.UserInfo" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    insert into NIMA_USER_INFO (ID, USERNAME, PASSWORD, SALT, ROLE_IDS, ORGANIZATION_ID, STATUS, CREATE_TIME, DEL_FLAG)
+         values (#{id,jdbcType=DECIMAL}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
+                 #{role_ids,jdbcType=VARCHAR}, #{organizationId,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL},
+                 #{createTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=DECIMAL}
+                )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tainy.entity.UserInfo" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    insert into NIMA_USER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userName != null" >
+        USERNAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="salt != null" >
+        SALT,
+      </if>
+      <if test="role_ids != null" >
+        ROLE_IDS,
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="role_ids != null" >
+        #{role_ids,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tainy.entity.UserInfo" >
+    update NIMA_USER_INFO
+    <set >
+      <if test="userName != null" >
+        USERNAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="role_ids != null" >
+        ROLE_IDS = #{role_ids,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID = #{organizationId,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tainy.entity.UserInfo" >
+   update NIMA_USER_INFO
+      set USERNAME = #{userName,jdbcType=VARCHAR},
+          PASSWORD = #{password,jdbcType=VARCHAR},
+          SALT = #{salt,jdbcType=VARCHAR},
+          ROLE_IDS = #{role_ids,jdbcType=VARCHAR},
+          ORGANIZATION_ID = #{organizationId,jdbcType=DECIMAL},
+          CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+          USER_NAME = #{userName,jdbcType=VARCHAR},
+          DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <!-- 根据 用户名和密码查询用户 -->
+  <select id="login" parameterType="com.tainy.entity.UserInfo" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+      from NIMA_USER_INFO
+     WHERE USERNAME = #{userInfo.userName,jdbcType=VARCHAR}
+       AND PASSWORD = #{userInfo.password, jdbcType=VARCHAR}
+       AND DEL_FLAG = 0
+  </select>
+  <!-- 根据查询用户总数 -->
+  <select id="count" parameterType="com.tainy.entity.UserInfo" resultType="java.lang.Long">
+    select count(*)
+      from NIMA_USER_INFO
+     where 1 = 1
+       AND DEL_FLAG = 0
+       <if test="userInfo.userName != null" >
+       AND USERNAME LIKE concat(concat('%',#{userInfo.userName,jdbcType=VARCHAR}),'%')
+     </if>
+       <if test="userInfo.status != null" >
+       AND STATUS = #{userInfo.status,jdbcType=DECIMAL}
+     </if>
+  </select>
+  <!-- 获得所有用户 -->
+  <select id="selectByPageListAllUserInfo" resultMap="BaseResultMap">
+    SELECT u.ID,
+           u.USERNAME,
+           u.PASSWORD,
+           u.SALT,
+           u.ROLE_IDS,
+           u.ORGANIZATION_ID,
+           u.STATUS,
+           u.CREATE_TIME,
+           u.DEL_FLAG,
+           o.NAME AS ORGANIZATION_NAME
+      FROM NIMA_USER_INFO u
+ LEFT JOIN NIMA_ORGANIZATION o
+        ON u.ORGANIZATION_ID = o.ID
+     WHERE 1 = 1
+       AND u.DEL_FLAG = 0
+       <if test="userInfo.userName != null and userInfo.userName != ''" >
+       AND u.USERNAME LIKE concat(concat('%',#{userInfo.userName,jdbcType=VARCHAR}),'%')
+     </if>
+  ORDER BY u.CREATE_TIME DESC
+  </select>
+  <!-- 判断 用户名是否存在 -->
+  <select id="judgeUserNameIsExist" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+      FROM NIMA_USER_INFO
+     WHERE 1 = 1
+       AND DEL_FLAG = 0
+       AND USERNAME = #{userName,jdbcType=VARCHAR}
+  </select>
+  <!-- 获取 用户 -->
+  <select id="listUserInfoByObject" parameterType="com.tainy.entity.UserInfo" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+      FROM NIMA_USER_INFO
+   <where>
+       <if test="id != null" >
+       AND ID = #{id,jdbcType=DECIMAL}
+     </if>
+       <if test="userName != null" >
+       AND USERNAME = #{userName,jdbcType=VARCHAR}
+     </if>
+       <if test="password != null" >
+       AND PASSWORD = #{password,jdbcType=VARCHAR}
+     </if>
+       <if test="salt != null" >
+       AND SALT = #{salt,jdbcType=VARCHAR}
+     </if>
+       <if test="role_ids != null" >
+       AND ROLE_IDS = #{role_ids,jdbcType=VARCHAR}
+     </if>
+       <if test="organizationId != null" >
+       AND ORGANIZATION_ID = #{organizationId,jdbcType=DECIMAL}
+     </if>
+       <if test="status != null" >
+       AND STATUS = #{status,jdbcType=DECIMAL}
+     </if>
+       <if test="createTime != null" >
+       AND CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+     </if>
+       <if test="delFlag != null" >
+       AND DEL_FLAG = #{delFlag,jdbcType=DECIMAL}
+     </if>
+  </where>
+  </select>
+</mapper>
