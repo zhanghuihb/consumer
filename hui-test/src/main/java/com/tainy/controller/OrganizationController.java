@@ -12,7 +12,7 @@ import com.tainy.service.JobInfoService;
 import com.tainy.service.OrganizationService;
 import com.tainy.vo.init.InitDataRequest;
 import com.tainy.vo.init.InitDataResponse;
-import com.wordnik.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiModelProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

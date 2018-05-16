@@ -23,15 +23,6 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
-    <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
-    <!-- 将自定义的swagger配置类加载到spring容器 -->
-    <bean class="com.tainy.console.apidoc.SwaggerConfig" />
-    <mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/" />
-
-    <!--Spring3.1开始的注解 HandlerMapping -->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
-    <!--Spring3.1开始的注解 HandlerAdapter -->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
     <!-- 文件上传 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 上传文件大小上限 -->
@@ -47,4 +38,19 @@
     <!--Configure bean to convert JSON to POJO and vice versa -->
     <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
     </bean>
+
+    <!-- Enables swagger2 ui-->
+    <mvc:default-servlet-handler/>
+    <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
+    
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/v1/**"/>
+            <mvc:exclude-mapping path="/v1/**/login" />
+            <mvc:exclude-mapping path="/v1/**/logout" />
+            <bean class="com.tainy.console.interceptor.LoginInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

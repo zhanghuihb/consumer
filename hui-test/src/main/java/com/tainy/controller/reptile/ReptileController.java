@@ -1,7 +1,7 @@
 package com.tainy.controller.reptile;
 
 import com.alibaba.fastjson.JSON;
-import com.wordnik.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiModelProperty;
 import com.tainy.common.BaseController;
 import com.tainy.common.BaseResponse;
 import com.tainy.webmagic.pipeline.meituan.MaoYanFilmPipeline;

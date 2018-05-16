@@ -6,7 +6,7 @@ import com.tainy.entity.UserInfo;
 import com.tainy.service.UserInfoService;
 import com.tainy.util.page.Page;
 import com.tainy.vo.user.*;
-import com.wordnik.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiModelProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;

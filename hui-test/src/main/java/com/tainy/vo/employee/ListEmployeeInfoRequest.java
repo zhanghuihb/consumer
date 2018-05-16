@@ -1,7 +1,7 @@
 package com.tainy.vo.employee;
 
 
-import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModelProperty;
 import com.tainy.vo.page.PageRequest;
 
 import java.io.Serializable;

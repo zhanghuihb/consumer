@@ -1,6 +1,6 @@
 package com.tainy.console.vo.console;
 
-import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModelProperty;
 import net.sf.oval.constraint.NotNull;
 
 import java.io.Serializable;

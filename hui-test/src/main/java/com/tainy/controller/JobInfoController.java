@@ -1,7 +1,7 @@
 package com.tainy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.wordnik.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiModelProperty;
 import com.tainy.common.*;
 import com.tainy.entity.JobInfo;
 import com.tainy.service.JobInfoService;

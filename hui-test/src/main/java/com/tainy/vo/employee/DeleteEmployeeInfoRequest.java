@@ -1,7 +1,7 @@
 package com.tainy.vo.employee;
 
 
-import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModelProperty;
 import net.sf.oval.constraint.NotNull;
 
 import java.io.Serializable;

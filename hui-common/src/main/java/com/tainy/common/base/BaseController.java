@@ -1,6 +1,7 @@
 package com.tainy.common.base;
 
 import com.alibaba.fastjson.JSON;
+import com.tainy.common.exception.TokenLossEfficacyException;
 import com.tainy.common.util.page.Page;
 import com.tainy.common.util.vo.page.PageRequest;
 import org.slf4j.Logger;
@@ -10,10 +11,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 
 @Controller
 public class BaseController {
@@ -57,5 +61,18 @@ public class BaseController {
 		pagePlugin.setShowCount(pagePlugin.getPageSize());
 
 		return pagePlugin;
+	}
+
+	@ExceptionHandler({ TokenLossEfficacyException.class })
+	@ResponseBody
+	public ResponseEntity<String> handleTokenLossEfficacyException(TokenLossEfficacyException e) {
+		HttpHeaders respHeader = new HttpHeaders();
+		respHeader.set("Content-Type", "application/json;charset=UTF-8");
+
+		LOGGER.warn(ResultCodeMsgEnum.USER_FAIL.getShowMsg(), e);
+
+		BaseResponse<?> baseResponse = BaseResponse.fail(ResultCodeMsgEnum.USER_FAIL.getCode(),ResultCodeMsgEnum.USER_FAIL.getMsg());
+
+		return new ResponseEntity<>(JSON.toJSONString(baseResponse), respHeader, HttpStatus.OK);
 	}
 }

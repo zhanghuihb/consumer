@@ -13,7 +13,7 @@ import com.tainy.console.vo.console.GetHotelsRequest;
 import com.tainy.console.vo.console.StatisticsResponse;
 import com.tainy.console.vo.console.vo.StatisticsAccordingAreaVO;
 import com.tainy.console.vo.console.vo.StatisticsAccordingScoreVO;
-import com.wordnik.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

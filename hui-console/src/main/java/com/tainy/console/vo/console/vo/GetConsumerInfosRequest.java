@@ -1,7 +1,7 @@
 package com.tainy.console.vo.console.vo;
 
 import com.tainy.common.util.vo.page.PageRequest;
-import com.wordnik.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 

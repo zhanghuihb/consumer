@@ -1,41 +1,44 @@
 package com.tainy.console.apidoc;
 
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * swagger 配置信息
+ * @author Gaven
+ * http://localhost:8080/hui-console/swagger-ui.html
+ */
 @Configuration
 @EnableWebMvc
-@EnableSwagger
+@EnableSwagger2
+@ComponentScan(basePackages = {"com.tainy.console.controller"})
 public class SwaggerConfig {
-	
-	private SpringSwaggerConfig springSwaggerConfig;
 
-	@Autowired
-	public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
-	  this.springSwaggerConfig = springSwaggerConfig;
-	}
-
-	@Bean //Don't forget the @Bean annotation
-	public SwaggerSpringMvcPlugin customImplementation(){
-	  return new SwaggerSpringMvcPlugin(this.springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?");
+	@Bean
+	public Docket createRestApi() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.apiInfo(apiInfo())
+				.select()
+				.apis(RequestHandlerSelectors.basePackage("com.tainy.console.controller"))
+				.paths(PathSelectors.any())
+				.build();
 	}
 
 	private ApiInfo apiInfo() {
-	  ApiInfo apiInfo = new ApiInfo(
-	          "商户API",
-	          "My Apps API Description",
-	          "My Apps API terms of service",
-	          "My Apps API Contact Email",
-	          "My Apps API Licence Type",
-	          "My Apps API License URL"
-	    );
-	  return apiInfo;
+		return new ApiInfoBuilder()
+				.title("hui-console")
+				.description("api")
+				.termsOfServiceUrl("http://localhost:8080/hui-console/swagger-ui.html")
+				.version("1.0")
+				.build();
 	}
-
 }

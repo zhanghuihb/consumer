@@ -1,7 +1,7 @@
 package com.tainy.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.wordnik.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiModelProperty;
 import com.tainy.common.BaseController;
 import com.tainy.common.BaseRequest;
 import com.tainy.common.BaseResponse;
