@@ -1,13 +1,14 @@
 package com.tainy.console.interceptor;
 
 import com.tainy.common.base.BaseRequest;
-import com.tainy.common.exception.TokenLossEfficacyException;
 import com.tainy.common.filter.RequestWrapper;
 import com.tainy.common.util.JsonUtil;
+import com.tainy.common.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,8 +25,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         threadLocals.set(System.currentTimeMillis());
-        // 请求参数
-        String body = new RequestWrapper(request).getBody();
+        ServletRequest requestWrapper = new RequestWrapper((HttpServletRequest) request);
+
+        String body = StringUtils.getRequestBody(requestWrapper);
         LOGGER.info("{} 接口请求数据：{}", request.getRequestURI(), body);
         // json 格式
         BaseRequest<?> baseRequest = JsonUtil.fromJson(body, BaseRequest.class);
@@ -37,7 +39,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             }*/
         }
 
-        return super.preHandle(request, response, handler);
+        return true;
     }
 
     @Override

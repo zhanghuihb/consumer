@@ -10,56 +10,47 @@ import java.io.*;
  * @date 2018/5/16 14:33
  */
 public class RequestWrapper extends HttpServletRequestWrapper{
-
-    private final String body;
+    private final byte[] body; // 报文
+    final static int BUFFER_SIZE = 4096;
 
     public RequestWrapper(HttpServletRequest request) throws IOException {
         super(request);
-        StringBuilder stringBuilder = new StringBuilder();
-        BufferedReader bufferedReader = null;
-        try {
-            InputStream inputStream = request.getInputStream();
-            if (inputStream != null) {
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                char[] charBuffer = new char[128];
-                int bytesRead = -1;
-                while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
-                    stringBuilder.append(charBuffer, 0, bytesRead);
-                }
-            } else {
-                stringBuilder.append("");
-            }
-        } catch (IOException ex) {
-            throw ex;
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException ex) {
-                    throw ex;
-                }
-            }
-        }
-        body = stringBuilder.toString();
-    }
-
-    @Override
-    public ServletInputStream getInputStream() throws IOException {
-        final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(body.getBytes());
-        ServletInputStream servletInputStream = new ServletInputStream() {
-            public int read() throws IOException {
-                return byteArrayInputStream.read();
-            }
-        };
-        return servletInputStream;
+        body = InputStreamTOByte(request.getInputStream());
     }
 
     @Override
     public BufferedReader getReader() throws IOException {
-        return new BufferedReader(new InputStreamReader(this.getInputStream()));
+        return new BufferedReader(new InputStreamReader(getInputStream()));
     }
 
-    public String getBody() {
-        return this.body;
+    @Override
+    public ServletInputStream getInputStream() throws IOException {
+        final ByteArrayInputStream bais = new ByteArrayInputStream(body);
+        return new ServletInputStream() {
+
+            @Override
+            public int read() throws IOException {
+                return bais.read();
+            }
+        };
+    }
+
+    // 将InputStream转换成byte数组
+    public static byte[] InputStreamTOByte(InputStream in) throws IOException {
+
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+
+        byte[] data = new byte[BUFFER_SIZE];
+
+        int count = -1;
+
+        while ((count = in.read(data, 0, BUFFER_SIZE)) != -1){
+            outStream.write(data, 0, count);
+        }
+
+        data = null;
+
+        return outStream.toByteArray();
+
     }
 }
