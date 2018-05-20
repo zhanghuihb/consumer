@@ -27,7 +27,7 @@ public class General {
             /**
              * 线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
              */
-            String accessToken = "24.04ff31a25cc1f5ea0eece5656bd11851.2592000.1524990509.282335-11023485";
+            String accessToken = "24.cb89cc65acdf5260cf84a2d0db855341.2592000.1529300214.282335-11023485";
             String result = HttpUtil.post(otherHost, accessToken, params);
             System.out.println(result);
 
