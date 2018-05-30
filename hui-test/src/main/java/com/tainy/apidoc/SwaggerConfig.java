@@ -1,41 +1,40 @@
-package com.tainy.console.apidoc;
+package com.tainy.apidoc;
 
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableWebMvc
-@EnableSwagger
+@EnableSwagger2
 public class SwaggerConfig {
-	
-	private SpringSwaggerConfig springSwaggerConfig;
 
-	@Autowired
-	public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
-	  this.springSwaggerConfig = springSwaggerConfig;
+	@Bean
+	public Docket buildDocket() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.apiInfo(buildApiInfo())
+				.select()
+				.apis(RequestHandlerSelectors.basePackage(""))
+				.paths(PathSelectors.any())
+				.build();
 	}
 
-	@Bean //Don't forget the @Bean annotation
-	public SwaggerSpringMvcPlugin customImplementation(){
-	  return new SwaggerSpringMvcPlugin(this.springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?");
-	}
+	private ApiInfo buildApiInfo() {
+		return new ApiInfoBuilder()
+				.title("API")
+				.termsOfServiceUrl("http://localhost:8080/hui_test/swagger-ui.html")
+				.description("Test")
+				.version("3.2")
+				.build();
 
-	private ApiInfo apiInfo() {
-	  ApiInfo apiInfo = new ApiInfo(
-	          "商户API",
-	          "My Apps API Description",
-	          "My Apps API terms of service",
-	          "My Apps API Contact Email",
-	          "My Apps API Licence Type",
-	          "My Apps API License URL"
-	    );
-	  return apiInfo;
 	}
 
 }

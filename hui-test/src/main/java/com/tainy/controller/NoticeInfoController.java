@@ -1,7 +1,6 @@
 package com.tainy.controller;
 
 import com.alibaba.fastjson.JSON;
-import io.swagger.annotations.ApiModelProperty;
 import com.tainy.common.BaseController;
 import com.tainy.common.BaseRequest;
 import com.tainy.common.BaseResponse;
@@ -13,6 +12,7 @@ import com.tainy.vo.notice.AddNoticeInfoRequest;
 import com.tainy.vo.notice.DeleteNoticeInfoRequest;
 import com.tainy.vo.notice.EditNoticeInfoRequest;
 import com.tainy.vo.notice.ListNoticeInfoRequest;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;

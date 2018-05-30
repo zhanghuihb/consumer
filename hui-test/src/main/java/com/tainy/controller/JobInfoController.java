@@ -1,7 +1,6 @@
 package com.tainy.controller;
 
 import com.alibaba.fastjson.JSON;
-import io.swagger.annotations.ApiModelProperty;
 import com.tainy.common.*;
 import com.tainy.entity.JobInfo;
 import com.tainy.service.JobInfoService;
@@ -10,6 +9,7 @@ import com.tainy.vo.job.AddJobInfoRequest;
 import com.tainy.vo.job.DeleteJobInfoRequest;
 import com.tainy.vo.job.EditJobInfoRequest;
 import com.tainy.vo.job.ListJobInfoRequest;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;

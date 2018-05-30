@@ -9,7 +9,7 @@ import com.tainy.vo.dept.AddDeptInfoRequest;
 import com.tainy.vo.dept.DeleteDeptInfoRequest;
 import com.tainy.vo.dept.EditDeptInfoRequest;
 import com.tainy.vo.dept.ListDeptInfoRequest;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;

@@ -1,7 +1,6 @@
 package com.tainy.controller.reptile;
 
 import com.alibaba.fastjson.JSON;
-import io.swagger.annotations.ApiModelProperty;
 import com.tainy.common.BaseController;
 import com.tainy.common.BaseResponse;
 import com.tainy.webmagic.pipeline.meituan.MaoYanFilmPipeline;
@@ -9,6 +8,7 @@ import com.tainy.webmagic.pipeline.meituan.MeiTuanFoodPipeline;
 import com.tainy.webmagic.processor.meituan.MaoYanFilmPageProcessor;
 import com.tainy.webmagic.processor.meituan.MeituanFoodPageProcessor;
 import com.tainy.webmagic.util.JdbcUtil;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;

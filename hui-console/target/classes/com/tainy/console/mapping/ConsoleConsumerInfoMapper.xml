@@ -382,7 +382,7 @@
        and del_flag = #{info.delFlag,jdbcType=INTEGER}
      </if>
   </where>
-  order by consumer_time DESC
+  order by consumer_time  DESC
   </select>
 
   <resultMap id="StatisticsConsumerDataResultMap" type="com.tainy.console.vo.console.dto.StatisticsConsumerDataDTO" >
