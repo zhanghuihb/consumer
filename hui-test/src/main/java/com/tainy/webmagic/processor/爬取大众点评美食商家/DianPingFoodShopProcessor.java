@@ -1,11 +1,14 @@
 package com.tainy.webmagic.processor.爬取大众点评美食商家;
 
+import com.tainy.webmagic.processor.爬取歌曲.ZanmeishiPagePipeline;
 import com.tainy.webmagic.processor.爬取歌曲.ZanmeishiPageProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
+import us.codecraft.webmagic.scheduler.RedisScheduler;
 
 /**
  * 爬取大众点评美食商家
@@ -32,5 +35,21 @@ public class DianPingFoodShopProcessor implements PageProcessor {
     @Override
     public Site getSite() {
         return this.site;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("*******************************************爬取大众点评美食商户开始*******************************************");
+        Spider.create(new DianPingFoodShopProcessor())
+                //从"http://www.dianping.com/citylist"开始抓
+                .addUrl("http://www.dianping.com/citylist")
+                //从之前抓取到的URL继续抓取
+                .setScheduler(new RedisScheduler("localhost"))
+                //保存到数据库
+                .addPipeline(new DianPingFoodShopPipeline())
+                //开启5个线程抓取
+                .thread(5)
+                //启动爬虫
+                .run();
+        System.out.println("*******************************************爬取大众点评美食商户结束*******************************************");
     }
 }
