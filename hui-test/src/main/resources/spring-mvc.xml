@@ -23,11 +23,6 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
-    <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
-    <!-- 将自定义的swagger配置类加载到spring容器 -->
-    <bean class="SwaggerConfig" />
-    <mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/" />
-
     <!--Spring3.1开始的注解 HandlerMapping -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
     <!--Spring3.1开始的注解 HandlerAdapter -->

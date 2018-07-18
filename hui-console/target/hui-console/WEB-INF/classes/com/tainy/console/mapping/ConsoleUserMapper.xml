@@ -164,13 +164,13 @@
 
   <select id="findUserByUsername" parameterType="String" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List"/>
-      FROM CONSOLE_USER
-     WHERE USERNAME=#{username}
+      FROM console_user
+     WHERE username=#{username}
   </select>
 
   <select id="selectListPageGetUsers" parameterType="com.tainy.common.domain.console.ConsoleUser" resultMap="BaseResultMap">
    SELECT <include refid="Base_Column_List" />
-     FROM CONSOLE_USER
+     FROM console_user
   <where>
       <if test="user.id != null" >
       AND id = #{user.id,jdbcType=INTEGER}
@@ -185,7 +185,7 @@
       AND salt = #{user.salt,jdbcType=VARCHAR}
     </if>
       <if test="user.roleIds != null" >
-      role_ids = #{user.roleIds,jdbcType=VARCHAR}
+      AND role_ids = #{user.roleIds,jdbcType=VARCHAR}
     </if>
       <if test="user.status != null" >
       AND status = #{user.status,jdbcType=INTEGER}

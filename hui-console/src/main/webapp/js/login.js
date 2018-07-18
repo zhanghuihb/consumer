@@ -40,3 +40,19 @@ $("#submit").click(function(){
         login(username, password);
     }
 });
+
+/*$('.weixin-login').on('click',function(){
+    window.location.href='https://open.weixin.qq.com/connect/qrconnect?' +
+        'appid=wxa0a28fe69d89c65d&redirect_uri=http%3a%2f%2fshoptest.jinghanit.com%2f'+window.location.pathname.substr(1)+'&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect';
+});*/
+
+/*var obj = new WxLogin({
+    self_redirect:true,
+    id:"login_container",
+    appid: "wxa0a28fe69d89c65d",
+    scope: "snsapi_login",
+    redirect_uri: "http%3a%2f%2fshoptest.jinghanit.com%2f'+window.location.pathname.substr(1)+'",
+    state: "3d6be0a4035d839573b04816624a415e",
+    style: "white",
+    href: ""
+});*/

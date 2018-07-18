@@ -6,8 +6,10 @@ import com.tainy.common.base.BaseRequest;
 import com.tainy.common.base.BaseResponse;
 import com.tainy.common.base.Constant;
 import com.tainy.common.domain.console.ConsoleHotel;
+import com.tainy.common.domain.console.ShuangSeQiu;
 import com.tainy.common.util.StringUtil;
 import com.tainy.common.util.page.Page;
+import com.tainy.console.mapper.ShuangSeQiuMapper;
 import com.tainy.console.service.ConsoleHotelService;
 import com.tainy.console.vo.console.GetHotelsRequest;
 import com.tainy.console.vo.console.StatisticsResponse;
@@ -18,11 +20,15 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Tainy
@@ -34,6 +40,9 @@ public class ConsoleHotelController extends BaseController{
 
     @Autowired
     private ConsoleHotelService consoleHotelService;
+
+    @Autowired
+    private ShuangSeQiuMapper shuangSeQiuMapper;
 
     @RequestMapping("/getAllHotels")
     @ResponseBody
@@ -99,5 +108,17 @@ public class ConsoleHotelController extends BaseController{
         response.setScoreList(scoreList);
         System.out.println("区域统计耗时：" + (System.currentTimeMillis() - startTime));
         return responseData(BaseResponse.success("区域统计成功", response));
+    }
+
+    @RequestMapping("/outExcel")
+    @ApiOperation(value = "统计接口", httpMethod = "GET", response = BaseResponse.class)
+    public ModelAndView outExcel(){
+        List<ShuangSeQiu> shuangSeQius = shuangSeQiuMapper.queryByObject(new ShuangSeQiu());
+        Map<String, Object> model = new HashMap<>();
+        if(!CollectionUtils.isEmpty(shuangSeQius)){
+            model.put("shuangSeQius", shuangSeQius);
+        }
+
+        return new ModelAndView(new JxlsExcelView("/template/ShuangSeQiuTemplate.xlsx", "shuangSeQius"), model);
     }
 }

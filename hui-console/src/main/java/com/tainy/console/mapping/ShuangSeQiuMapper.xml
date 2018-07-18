@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tainy.console.mapper.ShuangSeQiuMapper" >
+  <resultMap id="BaseResultMap" type="com.tainy.common.domain.console.ShuangSeQiu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="red1" property="red1" jdbcType="VARCHAR" />
+    <result column="red2" property="red2" jdbcType="VARCHAR" />
+    <result column="red3" property="red3" jdbcType="VARCHAR" />
+    <result column="red4" property="red4" jdbcType="VARCHAR" />
+    <result column="red5" property="red5" jdbcType="VARCHAR" />
+    <result column="red6" property="red6" jdbcType="VARCHAR" />
+    <result column="blue1" property="blue1" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, date, red1, red2, red3, red4, red5, red6, blue1
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ssq_reward_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ssq_reward_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tainy.common.domain.console.ShuangSeQiu" >
+    insert into ssq_reward_record (id, date, red1, 
+      red2, red3, red4, red5, 
+      red6, blue1)
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, #{red1,jdbcType=VARCHAR}, 
+      #{red2,jdbcType=VARCHAR}, #{red3,jdbcType=VARCHAR}, #{red4,jdbcType=VARCHAR}, #{red5,jdbcType=VARCHAR}, 
+      #{red6,jdbcType=VARCHAR}, #{blue1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tainy.common.domain.console.ShuangSeQiu" >
+    insert into ssq_reward_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="red1 != null" >
+        red1,
+      </if>
+      <if test="red2 != null" >
+        red2,
+      </if>
+      <if test="red3 != null" >
+        red3,
+      </if>
+      <if test="red4 != null" >
+        red4,
+      </if>
+      <if test="red5 != null" >
+        red5,
+      </if>
+      <if test="red6 != null" >
+        red6,
+      </if>
+      <if test="blue1 != null" >
+        blue1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="red1 != null" >
+        #{red1,jdbcType=VARCHAR},
+      </if>
+      <if test="red2 != null" >
+        #{red2,jdbcType=VARCHAR},
+      </if>
+      <if test="red3 != null" >
+        #{red3,jdbcType=VARCHAR},
+      </if>
+      <if test="red4 != null" >
+        #{red4,jdbcType=VARCHAR},
+      </if>
+      <if test="red5 != null" >
+        #{red5,jdbcType=VARCHAR},
+      </if>
+      <if test="red6 != null" >
+        #{red6,jdbcType=VARCHAR},
+      </if>
+      <if test="blue1 != null" >
+        #{blue1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tainy.common.domain.console.ShuangSeQiu" >
+    update ssq_reward_record
+    <set >
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="red1 != null" >
+        red1 = #{red1,jdbcType=VARCHAR},
+      </if>
+      <if test="red2 != null" >
+        red2 = #{red2,jdbcType=VARCHAR},
+      </if>
+      <if test="red3 != null" >
+        red3 = #{red3,jdbcType=VARCHAR},
+      </if>
+      <if test="red4 != null" >
+        red4 = #{red4,jdbcType=VARCHAR},
+      </if>
+      <if test="red5 != null" >
+        red5 = #{red5,jdbcType=VARCHAR},
+      </if>
+      <if test="red6 != null" >
+        red6 = #{red6,jdbcType=VARCHAR},
+      </if>
+      <if test="blue1 != null" >
+        blue1 = #{blue1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tainy.common.domain.console.ShuangSeQiu" >
+    update ssq_reward_record
+    set date = #{date,jdbcType=VARCHAR},
+      red1 = #{red1,jdbcType=VARCHAR},
+      red2 = #{red2,jdbcType=VARCHAR},
+      red3 = #{red3,jdbcType=VARCHAR},
+      red4 = #{red4,jdbcType=VARCHAR},
+      red5 = #{red5,jdbcType=VARCHAR},
+      red6 = #{red6,jdbcType=VARCHAR},
+      blue1 = #{blue1,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryByObject" parameterType="com.tainy.common.domain.console.ShuangSeQiu" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+      from ssq_reward_record
+   <where>
+       1 = 1
+     <if test="record.id != null" >
+       and id = #{record.id,jdbcType=INTEGER}
+     </if>
+     <if test="record.date != null" >
+       and date = #{record.date,jdbcType=VARCHAR}
+     </if>
+     <if test="record.red1 != null" >
+       and red1 = #{record.red1,jdbcType=VARCHAR}
+     </if>
+     <if test="record.red2 != null" >
+       and red2 = #{record.red2,jdbcType=VARCHAR}
+     </if>
+     <if test="record.red3 != null" >
+       and red3 = #{record.red3,jdbcType=VARCHAR}
+     </if>
+     <if test="record.red4 != null" >
+       and red4 = #{record.red4,jdbcType=VARCHAR}
+     </if>
+     <if test="record.red5 != null" >
+       and red5 = #{record.red5,jdbcType=VARCHAR}
+     </if>
+     <if test="record.red6 != null" >
+       and red6 = #{record.red6,jdbcType=VARCHAR}
+     </if>
+     <if test="record.blue1 != null" >
+       and blue1 = #{record.blue1,jdbcType=VARCHAR}
+     </if>
+  </where>
+    order by date DESC
+  </select>
+</mapper>
