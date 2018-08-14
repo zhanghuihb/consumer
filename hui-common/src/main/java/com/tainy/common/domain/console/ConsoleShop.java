@@ -1,56 +1,84 @@
 package com.tainy.common.domain.console;
 
+import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.solr.core.mapping.SolrDocument;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@SolrDocument(solrCoreName = "shop")
 public class ConsoleShop implements Serializable{
 
+    @Field
     private Integer id;
 
+    @Field
     private Integer userId;
 
+    @Field
     private String unionId;
 
+    @Field
     private String shopName;
 
+    @Field
     private String province;
 
+    @Field
     private String address;
 
+    @Field
     private String head;
 
+    @Field
     private String mobile;
 
+    @Field
     private String logo;
 
+    @Field
     private String avatar;
 
+    @Field
     private Integer sampleClassifyId;
 
+    @Field
     private Integer classifyId;
 
+    @Field
     private String classify;
 
+    @Field
     private Double longitude;
 
+    @Field
     private Double latitude;
 
+    @Field
     private Byte status;
 
+    @Field
     private Byte delFlag;
 
+    @Field
     private Date createTime;
 
+    @Field
     private Date updateTime;
 
+    @Field
     private String provinceCode;
 
+    @Field
     private String city;
 
+    @Field
     private String cityCode;
 
+    @Field
     private String country;
 
+    @Field
     private String counrtyCode;
 
     public Integer getId() {
