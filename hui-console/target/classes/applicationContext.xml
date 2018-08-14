@@ -13,4 +13,7 @@
     <!-- 引入MyBatis配置 -->
     <import resource="classpath:spring-mybatis.xml" />
 
+    <!-- 引入solr -->
+    <import resource="classpath:solr.xml" />
+
 </beans>

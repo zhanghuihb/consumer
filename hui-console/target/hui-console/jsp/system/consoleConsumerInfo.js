@@ -81,7 +81,7 @@ function createShowingTable(data) {
     }
     if (len == 0) {
         tableStr = tableStr + "<tr style='text-align: center'>"
-            + "<td colspan='6'><font color='red'>" + "暂无记录" + "</font></td>"
+            + "<td colspan='13'><font color='red'>" + "暂无记录" + "</font></td>"
             + "</tr>";
     }
     tableStr = tableStr + "</tbody></table>";
