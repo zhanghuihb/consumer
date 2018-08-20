@@ -12,5 +12,5 @@ public interface ShopService{
 
     ConsoleShop queryShopsById(Integer id);
 
-    PageInfo queryShops(QueryShopsRequest request);
+    PageInfo getShops(QueryShopsRequest request);
 }

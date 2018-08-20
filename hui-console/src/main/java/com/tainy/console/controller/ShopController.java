@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2018/8/13 16:35
  */
 @RestController
-@RequestMapping("/v1/shop")
+@RequestMapping("/v1/consoleShop")
 public class ShopController extends BaseController {
 
     @Autowired
@@ -34,10 +34,10 @@ public class ShopController extends BaseController {
         return responseData(BaseResponse.success(shopService.queryShopsById(baseRequest.getParam())));
     }
 
-    @RequestMapping("/queryShops")
+    @RequestMapping("/getShops")
     @ResponseBody
     @ApiOperation(value = "查询店铺接口", httpMethod = "POST", response = BaseResponse.class)
-    public ResponseEntity<String> queryShops(@RequestBody BaseRequest<QueryShopsRequest> baseRequest){
-        return responseData(BaseResponse.success(shopService.queryShops(baseRequest.getParam())));
+    public ResponseEntity<String> getShops(@RequestBody BaseRequest<QueryShopsRequest> baseRequest){
+        return responseData(BaseResponse.success(shopService.getShops(baseRequest.getParam())));
     }
 }

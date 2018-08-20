@@ -101,6 +101,23 @@
                         </ul>
                     </li>
                 </shiro:hasAnyRoles>
+                <shiro:hasAnyRoles name="shop">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon" aria-hidden="true"></span>&nbsp;商户管理</b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <shiro:hasPermission name="resource:view">
+                                <li><a href="../system/consoleShop.jsp">商户查看</a></li>
+                                <li class="divider"></li>
+                            </shiro:hasPermission>
+                            <shiro:hasPermission name="resource:view">
+                                <li><a href="../system/consoleShopStatistics.jsp">商户统计</a></li>
+                                <li class="divider"></li>
+                            </shiro:hasPermission>
+                        </ul>
+                    </li>
+                </shiro:hasAnyRoles>
             </ul>
             <shiro:guest>
                 <p class="navbar-text pull-right">欢迎游客访问：<a href="${pageContext.request.contextPath}/jsp/login.jsp">登录</a></p>

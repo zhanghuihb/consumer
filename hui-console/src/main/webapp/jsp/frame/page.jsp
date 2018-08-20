@@ -20,6 +20,8 @@
         var pageStr = "";
         var totalPage = data.data.totalPage;
         var currentPage = data.data.currentPage;
+        console.log("totalPage",totalPage);
+        console.log("currentPage",currentPage);
 
         var num = Math.floor(currentPage/10.1);
 

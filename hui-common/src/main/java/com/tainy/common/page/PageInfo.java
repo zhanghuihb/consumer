@@ -1,7 +1,5 @@
 package com.tainy.common.page;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
